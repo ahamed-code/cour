@@ -4,176 +4,388 @@
   <meta charset="UTF-8">
   <meta name="viewport" content="width=device-width, initial-scale=1">
   <title>Generative AI with Large Language Models - Coursera</title>
+  <link rel="icon" type="image/png" href="/tab logo.png">
+
   <!-- Bootstrap 5 -->
   <link href="https://cdn.jsdelivr.net/npm/bootstrap@5.3.0/dist/css/bootstrap.min.css" rel="stylesheet">
+  <link rel="stylesheet" href="https://cdn.jsdelivr.net/npm/bootstrap-icons@1.10.5/font/bootstrap-icons.css">
+
   <style>
-    body {
-      font-family: Arial, sans-serif;
-      background-color: #fff;
-    }
-    .navbar {
-      border-bottom: 1px solid #ddd;
-    }
+    body { font-family: Arial, sans-serif; background-color: #fff; }
+    .navbar { border-bottom: 1px solid #ddd; padding: 10px 20px; }
+    .completion-box { background: #f3f6fb; border-radius: 8px; padding: 20px; margin-bottom: 20px; }
+    .course-title { font-size: 28px; font-weight: bold; margin-bottom: 20px; }
+    .certificate img { max-height: 500px; width: auto; object-fit: contain; }
+    .skills span { background: #f3f3f3; padding: 6px 14px; margin: 4px; border-radius: 20px; font-size: 13px; display: inline-block; }
+    footer { background: #f9f9f9; padding: 40px; margin-top: 50px; }
+    footer h5, footer h6 { font-size: 16px; margin-bottom: 10px; }
+    footer a { display: block; color: #333; text-decoration: none; margin: 5px 0; font-size: 14px; }
     .completion-box {
-      background: #f3f6fb;
-      border-radius: 8px;
-      padding: 20px;
-      margin-bottom: 20px;
-    }
-    .course-title {
-      font-size: 24px;
-      font-weight: bold;
-    }
-    .enroll-btn {
-      background: #0056d2;
-      color: #fff;
-      border-radius: 6px;
-      padding: 10px 20px;
-      border: none;
-    }
-    .certificate {
-      border: 1px solid #ccc;
-      background: #fff;
-      padding: 30px;
-      width: 100%;
-      text-align: center;
-      position: relative;
-    }
-    .certificate h4 {
-      font-weight: bold;
-      margin-top: 10px;
-    }
-    .certificate .duration {
-      font-size: 14px;
-      color: #555;
-      margin-bottom: 15px;
-    }
-    .skills span {
-      background: #f3f3f3;
-      padding: 6px 14px;
-      margin: 4px;
-      border-radius: 20px;
-      font-size: 13px;
-      display: inline-block;
-    }
-    footer {
-      background: #f9f9f9;
-      padding: 40px;
-      margin-top: 50px;
-    }
-    footer h5 {
-      font-size: 16px;
-      margin-bottom: 10px;
-    }
-    footer a {
-      display: block;
-      color: #333;
-      text-decoration: none;
-      margin: 5px 0;
-      font-size: 14px;
-    }
-    
+  background-color: #eaf3ff; /* light blue */
+  color: #000;
+  border: 1px solid #cce0ff;
+  border-radius: 8px;
+  padding: 20px;
+  margin-bottom: 20px;
+}
+
+.completion-box a {
+  color: #0056d2;
+  text-decoration: underline;
+}
+.completion-box a:hover {
+  color: #003d99;
+}
+
   </style>
 </head>
 <body>
 
-<!-- Navbar -->
-<nav class="navbar navbar-expand-lg bg-white px-4">
-  <a class="navbar-brand" href="#">
-    <img src="/logo.png" height="30" alt="Coursera Logo">
+<!-- Top Black Bar -->
+<div class="bg-dark text-white py-1">
+  <div class="container d-flex justify-content-center justify-content-lg-start flex-wrap">
+    <a href="https://www.coursera.org/onboarding/role-select?isFirstTimeSeeingOnboarding=true" class="top-link fw-bold">For Individuals</a>
+    <a href="https://www.coursera.org/business?utm_content=corp-to-home-for-enterprise&utm_campaign=website&utm_medium=coursera&utm_source=header&utm_term=b-in" class="top-link">For Businesses</a>
+    <a href="https://www.coursera.org/campus?utm_content=corp-to-landing-for-campus&utm_campaign=website&utm_medium=coursera&utm_source=header&utm_term=b-in" class="top-link">For Universities</a>
+    <a href="https://www.coursera.org/government?utm_content=corp-to-landing-for-government&utm_campaign=website&utm_medium=coursera&utm_source=header&utm_term=b-in" class="top-link">For Governments</a>
+  </div>
+</div>
+
+<style>
+  .top-link {
+    color: white;
+    font-size: 0.9rem;
+    margin-right: 1rem;
+    padding: 4px 8px;
+    text-decoration: none;
+    transition: all 0.2s ease;
+  }
+
+  .top-link:hover,
+  .top-link.active {
+    background-color: white;
+    color: black !important;
+  }
+</style>
+
+
+<!-- Main Navbar -->
+<nav class="navbar navbar-expand-lg bg-white border-bottom">
+  <div class="container-fluid">
+    <!-- Logo -->
+    <a class="navbar-brand" href="https://www.coursera.org/account/accomplishments/verify/Y5UY93SYQD5R?isNewUser=true">
+      <img src="logo.png" alt="Coursera Logo" height="28">
+    </a>
+
+    <!-- Hamburger -->
+    <button class="navbar-toggler" type="button" data-bs-toggle="collapse" data-bs-target="#mainNavbar">
+      <span class="navbar-toggler-icon"></span>
+    </button>
+
+    <!-- Collapsible Content -->
+    <div class="collapse navbar-collapse" id="mainNavbar">
+
+      <!-- Explore + Search -->
+      <div class="d-lg-flex align-items-center flex-grow-1">
+        <!-- Explore Dropdown -->
+        <div class="dropdown me-lg-3 my-2 my-lg-0">
+          <button class="btn btn-outline-primary dropdown-toggle w-100" type="button" data-bs-toggle="dropdown">
+            Explore
+          </button>
+          <ul class="dropdown-menu">
+            <li><a class="dropdown-item" href="#">Data Science</a></li>
+            <li><a class="dropdown-item" href="#">AI & Machine Learning</a></li>
+            <li><a class="dropdown-item" href="#">Business</a></li>
+          </ul>
+        </div>
+
+        <!-- Search Bar -->
+        <form class="d-flex flex-grow-1 my-2 my-lg-0">
+          <input class="form-control me-2" type="search" placeholder="What do you want to learn?">
+          <button class="btn btn-primary" type="submit"><i class="bi bi-search"></i></button>
+        </form>
+      </div>
+
+      <!-- Right Links -->
+     <div class="d-flex align-items-center ms-lg-3 flex-column flex-lg-row mt-3 mt-lg-0">
+
+  <!-- Normal link (hover makes it blue) -->
+  <a href="https://www.coursera.org/degrees" 
+     class="me-lg-3 mb-2 mb-lg-0 text-dark text-decoration-none">
+    Degrees
   </a>
-  <div class="ms-auto">
-   
-    <a href="https://www.coursera.org/degrees" class="me-3 text-dark">Online Degrees</a>
-    <a href="https://www.coursera.org/career-academy?trk_ref=globalnav" class="me-3 text-dark">Careers</a>
+
+  <!-- Normal link (hover makes it blue) -->
+  <a href="https://www.coursera.org/career-academy?trk_ref=globalnav" 
+     class="me-lg-3 mb-2 mb-lg-0 text-dark text-decoration-none">
+    Careers
+  </a>
+
+ <!-- Bell Icon -->
+<i class="bi bi-bell me-lg-3 mb-2 mb-lg-0 fs-5"></i>
+
+<!-- Language Dropdown on Hover -->
+<div class="dropdown">
+  <i class="bi bi-globe me-lg-3 mb-2 mb-lg-0 fs-5 dropdown-toggle" 
+     role="button"
+     data-bs-toggle="dropdown"
+     aria-expanded="false"></i>
+
+  <ul class="dropdown-menu dropdown-menu-end" style="max-height: 400px; overflow-y: auto;">
+    <li><a class="dropdown-item active" href="#">English ✓</a></li>
+    <li><a class="dropdown-item" href="#">العربية</a></li>
+    <li><a class="dropdown-item" href="#">Azərbaycanca</a></li>
+    <li><a class="dropdown-item" href="#">Deutsch</a></li>
+    <li><a class="dropdown-item" href="#">Ελληνικά</a></li>
+    <li><a class="dropdown-item" href="#">Español</a></li>
+    <li><a class="dropdown-item" href="#">Français</a></li>
+    <li><a class="dropdown-item" href="#">हिन्दी</a></li>
+    <li><a class="dropdown-item" href="#">日本語</a></li>
+    <li><a class="dropdown-item" href="#">한국어</a></li>
+    <li><a class="dropdown-item" href="#">Português (Brasil)</a></li>
+    <li><a class="dropdown-item" href="#">Русский</a></li>
+
+    <hr class="dropdown-divider">
+    <li>
+      <a class="dropdown-item text-primary" href="#">
+        🌐 Add translation feedback
+      </a>
+    </li>
+  </ul>
+</div>
+
+<!-- CSS to enable hover dropdown -->
+<style>
+  .dropdown:hover .dropdown-menu {
+    display: block;
+    margin-top: 0; /* keeps it aligned with the globe */
+  }
+</style>
+
+
+<style>
+  /* Hover effect */
+  .text-dark:hover {
+    color: #0d6efd !important; /* Bootstrap primary blue */
+  }
+</style>
+
+        
+        <!-- Auth Buttons -->
+        <a href="https://www.coursera.org/about/cookies-manage?authMode=login" class="btn btn-outline-primary me-lg-2 mb-2 mb-lg-0">Log In</a>
+        <a href="https://www.coursera.org/about/cookies-manage?authMode=login" class="btn btn-primary">Join for Free</a>
+      </div>
+    </div>
   </div>
 </nav>
+
 
 <!-- Main Content -->
 <div class="container py-5">
   <div class="row">
+
     <!-- Left Column -->
     <div class="col-lg-6">
-      <div class="completion-box">
-        <h5 class="mb-2">✔ Completed by Abdul Jaleel A</h5>
-        <p class="mb-1">August 20, 2023</p>
-        <p class="mb-1">30 days (online learning)</p>
-        <p class="mb-0">Coursera certifies their successful completion of <a href="#">Generative AI with Large Language Models</a></p>
-      </div>
+      <p class="fw-bold">Course Certificate</p>
+      <div class="course-title">Generative AI with Large Language Models</div>
 
-      <div class="mb-3 course-title">Generative AI with Large Language Models</div>
-      <p>DeepLearning.AI ⭐ 4.8 (3,457 ratings) | 405,163 already enrolled</p>
-      <button class="enroll-btn">Enroll for Free</button>
+      <!-- Completion Box -->
+      <div class="completion-box d-flex align-items-start">
+  <!-- Profile Icon -->
+  <div class="position-relative me-3">
+    <img src="avatar.png" alt="User Avatar" 
+         style="height:60px; width:60px; border-radius:50%; background:#f0f0f0; object-fit:cover;">
+ 
+    </span>
+  </div>
 
-      <div class="mt-4">
-        <h5>WHAT YOU WILL LEARN</h5>
-        <ul class="list-unstyled">
-          <li>✔ Gain foundational knowledge, practical skills, and a functional understanding of how generative AI works</li>
-          <li>✔ Dive into the latest research on Gen AI to understand how companies create value</li>
-          <li>✔ Instruction from expert AWS AI practitioners</li>
-        </ul>
-      </div>
-
-      <div class="mt-4">
-        <h5>SKILLS YOU WILL GAIN</h5>
-        <div class="skills">
-          <span>Prompt Engineering</span>
-          <span>PyTorch</span>
-          <span>Responsible AI</span>
-          <span>Natural Language Processing</span>
-          <span>Performance Tuning</span>
-          <span>Generative AI</span>
-          <span>Applied Machine Learning</span>
-          <span>Machine Learning</span>
-          <span>Large Language Modeling</span>
-        </div>
-      </div>
-    </div>
-
-  <!-- Right Column (Certificate Placeholder) -->
-<div class="col-lg-6 d-flex justify-content-center">
-  <div class="certificate shadow-sm d-flex align-items-center justify-content-center w-100">
-    <img src="/certi.png" alt="Certificate" 
-         class="img-fluid" 
-         style="max-height:400px; object-fit:contain;">
+  <!-- Text Content -->
+  <div>
+    <h6 class="fw-bold">Completed by Abdul Jaleel A</h6>
+    <p><strong>August 01, 2025</strong></p>
+    <p><strong>35 hours (approximately)</strong></p>
+    <p>
+      Abdul Jaleel’s account is verified. Coursera certifies their successful completion of 
+      <a href="https://www.coursera.org/learn/generative-ai-with-llms">Generative AI with Large Language Models</a>
+    </p>
   </div>
 </div>
 
 
+      <!-- Course Info -->
+      
+<div class="p-3 border rounded mb-4" style="max-width: 600px;">
+
+  <div class="d-flex align-items-start">
+    <!-- Logo -->
+    <div class="me-3">
+      <img src="deep.jpeg" alt="DeepLearning.AI" 
+           style="height:50px; width:50px; border-radius:50%; object-fit:cover;">
+    </div>
+
+    <!-- Text -->
+    <div>
+      <h5 class="mb-1 fw-bold" style="font-size: 1.1rem;">
+        Generative AI with Large Language Models
+      </h5>
+      <p class="mb-1 text-muted" style="font-size: 14px;">DeepLearning.AI</p>
+      <span style="font-size: 14px; color: #333;">
+        ⭐ 4.8 (3,457 ratings) | 405,163 enrolled
+      </span>
+    </div>
+  </div>
 
 
+  <!-- Enroll Button -->
+<a href="https://www.coursera.org/payments/checkout?cartId=562883267" 
+   class="btn btn-primary w-100 mt-3" style="font-weight: 600; text-decoration: none;">
+  Enroll for Free
+</a>
+</div>
+<!-- What You Will Learn -->
+<div class="p-3 border rounded mb-4" style="max-width: 600px;">
+  <h6 class="fw-bold mb-3">WHAT YOU WILL LEARN</h6>
+
+  <div class="row">
+    <div class="col-md-6 mb-2 d-flex">
+      <i class="bi bi-check2 text-success me-2"></i>
+      <span>Gain foundational knowledge, practical skills, and a functional understanding of how generative AI works</span>
+    </div>
+
+    <div class="col-md-6 mb-2 d-flex">
+      <i class="bi bi-check2 text-success me-2"></i>
+      <span>Dive into the latest research on Gen AI to understand how companies are creating value with cutting-edge technology</span>
+    </div>
+
+    <div class="col-md-6 mb-2 d-flex">
+      <i class="bi bi-check2 text-success me-2"></i>
+      <span>Instruction from expert AWS AI practitioners who actively build and deploy AI in business use-cases today</span>
+    </div>
+  </div>
+</div>
+
+
+      <!-- Skills -->
+      <h5>SKILLS YOU WILL GAIN</h5>
+      <div class="skills">
+        <span>Prompt Engineering</span>
+        <span>PyTorch (Machine Learning Library)</span>
+        <span>Responsible AI</span>
+        <span>Natural Language Processing</span>
+        <span>Performance Tuning</span>
+        <span>Generative AI</span>
+        <span>Applied Machine Learning</span>
+        <span>Machine Learning</span>
+        <span>Large Language Modeling</span>
+      </div>
+    </div>
+
+    <!-- Right Column -->
+    <div class="col-lg-6 text-center">
+      <div class="certificate">
+        <img src="certi.png" alt="Certificate" class="img-fluid shadow">
+      </div>
+    </div>
+  </div>
+</div>
 
 <!-- Footer -->
-<footer>
-  <div class="row">
-    <div class="col-md-3">
-      <h5>Coursera</h5>
-      <a href="#">About</a>
-      <a href="#">Catalog</a>
-      <a href="#">Coursera Plus</a>
-      <a href="#">Professional Certificates</a>
-    </div>
-    <div class="col-md-3">
-      <h5>Community</h5>
-      <a href="#">Learners</a>
-      <a href="#">Partners</a>
-      <a href="#">Blog</a>
-    </div>
-    <div class="col-md-3">
-      <h5>More</h5>
-      <a href="#">Press</a>
-      <a href="#">Privacy</a>
-      <a href="#">Help</a>
-      <a href="#">Accessibility</a>
-    </div>
-    <div class="col-md-3">
-      <h5>Mobile App</h5>
-      <a href="#">Download on App Store</a>
-      <a href="#">Get it on Google Play</a>
+<footer class="bg-light mt-5 pt-4 pb-3 border-top">
+  <div class="container">
+    <div class="row text-start">
+
+      <!-- Coursera -->
+      <div class="col-md-3 mb-3">
+        <h6 class="fw-bold mb-3">Coursera</h6>
+        <div class="d-flex flex-column">
+          <a href="https://about.coursera.org/">About</a>
+          <a href="https://about.coursera.org/how-coursera-works/">What We Offer</a>
+          <a href="https://about.coursera.org/leadership">Leadership</a>
+          <a href="https://careers.coursera.com/">Careers</a>
+          <a href="https://www.coursera.org/browse">Catalog</a>
+          <a href="https://www.coursera.org/courseraplus">Coursera Plus</a>
+          <a href="https://www.coursera.org/professional-certificates">Professional Certificates</a>
+          <a href="https://www.coursera.org/mastertrack">MasterTrack® Certificates</a>
+          <a href="https://www.coursera.org/degrees">Degrees</a>
+          <a href="https://www.coursera.org/business">For Enterprise</a>
+          <a href="https://www.coursera.org/government">For Government</a>
+          <a href="https://www.coursera.org/campus">For Campus</a>
+          <a href="https://www.coursera.org/partnerships">Become a Partner</a>
+          <a href="https://www.coursera.org/social-impact">Social Impact</a>
+        </div>
+      </div>
+
+      <!-- Community -->
+      <div class="col-md-3 mb-3">
+        <h6 class="fw-bold mb-3">Community</h6>
+        <div class="d-flex flex-column">
+          <a href="https://www.coursera.support/s/community">Learners</a>
+          <a href="https://www.coursera.org/partners">Partners</a>
+          <a href="https://www.coursera.support/s/article/learner-000001137">Beta Testers</a>
+          <a href="https://blog.coursera.org/">Blog</a>
+          <a href="https://open.spotify.com/show/58M36bneU7REOofdPZxe6A">The Coursera Podcast</a>
+          <a href="https://medium.com/coursera-engineering">Tech Blog</a>
+        </div>
+      </div>
+
+      <!-- More -->
+      <div class="col-md-3 mb-3">
+        <h6 class="fw-bold mb-3">More</h6>
+        <div class="d-flex flex-column">
+          <a href="https://about.coursera.org/press">Press</a>
+          <a href="https://investor.coursera.com/">Investors</a>
+          <a href="https://www.coursera.org/about/terms">Terms</a>
+          <a href="https://www.coursera.org/about/privacy">Privacy</a>
+          <a href="https://www.coursera.support/s/learner-help-center">Help</a>
+          <a href="https://www.coursera.support/s/article/learner-000001052">Accessibility</a>
+          <a href="https://about.coursera.org/contact">Contact</a>
+          <a href="https://www.coursera.org/articles">Articles</a>
+          <a href="https://www.coursera.org/directory">Directory</a>
+          <a href="https://about.coursera.org/affiliates">Affiliates</a>
+          <a href="#">Modern Slavery Statement</a>
+          <a href="https://www.coursera.org/about/cookies-manage">Manage Cookie Preferences</a>
+        </div>
+      </div>
+
+      <!-- Mobile App -->
+      <div class="col-md-3 mb-3 text-center">
+  <h6 class="fw-bold mb-3">Mobile App</h6>
+
+  <!-- App Store -->
+  <a href="https://apps.apple.com/us/app/coursera-grow-your-career/id736535961" target="_blank">
+    <img src="apple.png" alt="App Store" class="mb-2 d-block mx-auto" style="height:40px;">
+  </a>
+
+  <!-- Google Play -->
+  <a href="https://play.google.com/store/apps/details?id=org.coursera.android" target="_blank">
+    <img src="google.png" alt="Google Play" class="mb-3 d-block mx-auto" style="height:40px;">
+  </a>
+
+  <!-- Certified B Corporation -->
+  <a href="https://bcorporation.net/" target="_blank">
+    <img src="b.png" alt="Certified B Corporation" class="d-block mx-auto" style="height:80px;">
+  </a>
+</div>
+
+
+    <hr>
+
+    <!-- Social + Copyright -->
+    <div class="d-flex justify-content-between align-items-center flex-wrap">
+      <p class="mb-0 text-muted small">© 2025 Coursera Inc. All rights reserved.</p>
+      <div class="d-flex gap-3 fs-5">
+        <a href="https://www.facebook.com/Coursera"><i class="bi bi-facebook"></i></a>
+        <a href="https://www.linkedin.com/company/coursera/"><i class="bi bi-linkedin"></i></a>
+        <a href="https://x.com/coursera"><i class="bi bi-twitter"></i></a>
+        <a href="https://www.youtube.com/user/coursera"><i class="bi bi-youtube"></i></a>
+        <a href="https://www.instagram.com/coursera/"><i class="bi bi-instagram"></i></a>
+      </div>
     </div>
   </div>
 </footer>
 
+
+<!-- Bootstrap JS -->
 <script src="https://cdn.jsdelivr.net/npm/bootstrap@5.3.0/dist/js/bootstrap.bundle.min.js"></script>
 </body>
 </html>
